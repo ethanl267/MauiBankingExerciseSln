@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiBankingExercise.Views.CustomerSelectionPage"
+             xmlns:vm="clr-namespace:MauiBankingExercise.ViewModels"
+             Title="Customer Page">
+
+    <ContentPage.BindingContext>
+        <vm:CustomerSelectionViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="10">
+        <Label Text="Customer List:" FontSize="24" HorizontalOptions="Center" />
+        
+        <Label Text="{Binding Customers.Count}" FontSize="18" TextColor="Gray" />
+
+        <CollectionView ItemsSource="{Binding Customers}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding FirstName}" FontSize="18" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </StackLayout>
+    
+</ContentPage>
