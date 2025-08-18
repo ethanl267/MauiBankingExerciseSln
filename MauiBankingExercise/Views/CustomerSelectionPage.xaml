@@ -14,7 +14,7 @@
         
         <Label Text="{Binding Customers.Count}" FontSize="18" TextColor="Gray" />
 
-        <CollectionView ItemsSource="{Binding Customers}">
+        <CollectionView ItemsSource="{Binding Customers}" SelectionMode="Single" SelectionChanged="OnCustomerSelected">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10">
