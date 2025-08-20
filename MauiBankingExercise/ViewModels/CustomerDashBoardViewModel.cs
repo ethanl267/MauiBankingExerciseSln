@@ -11,16 +11,9 @@ namespace MauiBankingExercise.ViewModels
 {
     public class CustomerDashBoardViewModel
     {
-        public ObservableCollection<Account> Accounts { get; set; }
 
-        public CustomerDashBoardViewModel(Customer customer)
+        public CustomerDashBoardViewModel()
         {
-            // Initialize with some dummy data
-            Accounts = new ObservableCollection<Account>
-            {
-                new Account {  AccountNumber = "111111", AccountBalance = 2500.50m },
-                new Account { AccountNumber = "222222", AccountBalance = 3500.75m },
-            };
 
         }
     }

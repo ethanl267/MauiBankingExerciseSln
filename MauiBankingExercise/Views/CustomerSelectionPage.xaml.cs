@@ -1,28 +1,32 @@
-namespace MauiBankingExercise.Views;
 using MauiBankingExercise.ViewModels;
+using Microsoft.Maui.Controls;
+using System.Linq;
 using System.Threading.Tasks;
+using MauiBankingExercise.Models;
 
-public partial class CustomerSelectionPage : ContentPage
+
+namespace MauiBankingExercise.Views
 {
-    public CustomerSelectionPage()
+    public partial class CustomerSelectionPage : ContentPage
     {
-        InitializeComponent();
-        BindingContext = new ViewModels.CustomerSelectionViewModel();
-    }
-
-    private async void OnCustomerSelected(object sender, SelectionChangedEventArgs e)
-    {
-        if (e.CurrentSelection.FirstOrDefault() is Models.Customer customer)
+        public CustomerSelectionPage()
         {
-            await DisplayAlert("Customer Selected", $"You chose: {customer.FirstName}", "OK");
+            InitializeComponent();
+            BindingContext = new CustomerSelectionViewModel();
+        }
 
-            // Pass the selected customer to the dashboard
-            await Navigation.PushAsync(new CustomerDashboardPage(customer));
-
-            // Optional: clear selection so the same item can be tapped again
-            ((CollectionView)sender).SelectedItem = null;
+        private async void CustomerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedCustomer = e.CurrentSelection.FirstOrDefault() as Customer;
+            if (selectedCustomer != null)
+            {
+                await Navigation.PushAsync(new CustomerDashboardPage(selectedCustomer.CustomerId));
+            }
         }
     }
-
-
 }
+
+
+
+
+

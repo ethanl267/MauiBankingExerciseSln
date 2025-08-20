@@ -14,15 +14,19 @@
         
         <Label Text="{Binding Customers.Count}" FontSize="18" TextColor="Gray" />
 
-        <CollectionView ItemsSource="{Binding Customers}" SelectionMode="Single" SelectionChanged="OnCustomerSelected">
+        <CollectionView x:Name="CustomerList"
+                SelectionMode="Single"
+                SelectionChanged="CustomerList_SelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10">
-                        <Label Text="{Binding FirstName}" FontSize="18" />
+                        <Label Text="{Binding FirstName}" FontSize="20"/>
+                        <Label Text="{Binding LastName}" FontSize="16"/>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
 
     </StackLayout>
     

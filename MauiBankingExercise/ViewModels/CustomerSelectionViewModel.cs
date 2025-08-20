@@ -6,20 +6,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MauiBankingExercise.Services;
 
 namespace MauiBankingExercise.ViewModels
 {
     public class CustomerSelectionViewModel
     {
         public ObservableCollection<Customer> Customers { get; set; }
+        private CustomerService _service;
+
         public CustomerSelectionViewModel()
         {
-            // Initialize with some dummy data
-            Customers = new ObservableCollection<Customer>
-            {
-                new Customer { FirstName = "Jane", LastName = "Smith"},
-                new Customer { FirstName = "Bob",  LastName ="Doe"},
-            };
+            _service = new CustomerService(App.DbConnection);
+            var allCustomers = _service.GetAllCustomers();
+            Customers = new ObservableCollection<Customer>(allCustomers);
         }
     }
 }
