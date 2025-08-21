@@ -24,6 +24,11 @@ namespace MauiBankingExercise.Services
             return _db.Table<Account>().Where(x => x.CustomerId == id).ToList();
         }
 
+        public List<Transaction> GetTransactionsByAccountId(int id)
+        {
+            return _db.Table<Transaction>().Where(x => x.AccountId == id).ToList();
+        }
+
         public List<Customer> GetAllCustomers()
         {
             return _db.Table<Customer>()

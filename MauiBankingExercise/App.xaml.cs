@@ -18,6 +18,7 @@ namespace MauiBankingExercise
             BankingSeeder.Seed(DbConnection);
 
             MainPage = new NavigationPage(new CustomerSelectionPage());
+            
         }
 
     }

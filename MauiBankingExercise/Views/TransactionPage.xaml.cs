@@ -1,9 +1,16 @@
 namespace MauiBankingExercise.Views;
+using MauiBankingExercise.Services;
+using MauiBankingExercise.ViewModels;
+using MauiBankingExercise.Models;
 
 public partial class TransactionPage : ContentPage
 {
-	public TransactionPage()
+    private BankingDatabaseService _service;
+    public TransactionPage(int AccountId)
 	{
 		InitializeComponent();
-	}
+        BindingContext = new TransactionViewModel(AccountId);
+    }
+
+   
 }

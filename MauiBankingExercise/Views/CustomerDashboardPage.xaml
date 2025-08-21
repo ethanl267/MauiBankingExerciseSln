@@ -7,7 +7,9 @@
              Title="CustomerDashboardPage" x:DataType="vm:CustomerDashBoardViewModel">
 
 
-    <CollectionView ItemsSource="{Binding Accounts}">
+    <CollectionView ItemsSource="{Binding Accounts}"
+                    SelectedItem="Single"
+                    SelectionChanged="OnAccountSelected">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Account">
                 <StackLayout Padding="10">

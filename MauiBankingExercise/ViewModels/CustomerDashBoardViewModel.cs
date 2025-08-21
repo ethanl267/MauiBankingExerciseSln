@@ -18,11 +18,7 @@ namespace MauiBankingExercise.ViewModels
         public CustomerDashBoardViewModel(int customerId)
         {
             _service = new BankingDatabaseService(App.DbConnection);
-
-            // Get all accounts from the service
             var allAccounts = _service.GetAccountsByCustomerId(customerId);
-
-            // Assign accounts, not customers
             Accounts = new ObservableCollection<Account>(allAccounts);
         }
     }

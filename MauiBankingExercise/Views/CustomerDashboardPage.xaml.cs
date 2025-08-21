@@ -23,6 +23,21 @@ namespace MauiBankingExercise.Views
           */
          
         }
+
+        private async void OnAccountSelected(object sender, SelectionChangedEventArgs e)
+        {
+            Console.WriteLine("Account clicked!"); // Debug line
+
+            if (e.CurrentSelection.FirstOrDefault() is Account selectedAccount)
+            {
+                Console.WriteLine($"Navigating to account {selectedAccount.AccountId}");
+                await Navigation.PushAsync(new TransactionPage(selectedAccount.AccountId));
+            }
+
+    ((CollectionView)sender).SelectedItem = null;
+        }
+
+
     }
 }
 
