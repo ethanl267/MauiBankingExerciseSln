@@ -14,7 +14,7 @@
         
         <Label Text="{Binding Customers.Count}" FontSize="18" TextColor="Gray" />
 
-        <CollectionView x:Name="CustomerList"
+        <CollectionView x:Name="CustomerList" ItemsSource="{Binding Customers}"
                 SelectionMode="Single"
                 SelectionChanged="CustomerList_SelectionChanged">
             <CollectionView.ItemTemplate>

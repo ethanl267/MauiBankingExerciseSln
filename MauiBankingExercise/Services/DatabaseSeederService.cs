@@ -25,6 +25,10 @@ namespace MauiBankingExercise.Services
             db.CreateTable<AssetType>();
             db.CreateTable<Asset>();
 
+
+            if (db.Table<Customer>().ToList().Count > 0)
+                return;
+
             // Seed CustomerTypes  
             var customerTypes = new List<CustomerType>
         {

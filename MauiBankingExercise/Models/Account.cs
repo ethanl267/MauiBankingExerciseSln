@@ -32,5 +32,6 @@ namespace MauiBankingExercise.Models
 
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<Transaction> Transactions { get; set; }
+
     }
 }

@@ -3,16 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiBankingExercise.Views.CustomerDashboardPage"
              xmlns:vm="clr-namespace:MauiBankingExercise.ViewModels"
-             Title="CustomerDashboardPage">
+             xmlns:models="clr-namespace:MauiBankingExercise.Models"
+             Title="CustomerDashboardPage" x:DataType="vm:CustomerDashBoardViewModel">
 
 
     <CollectionView ItemsSource="{Binding Accounts}">
         <CollectionView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="models:Account">
                 <StackLayout Padding="10">
                     <Label Text="Current Account"/>
                     <Label Text="{Binding AccountNumber}"/>
                     <Label Text="{Binding AccountBalance}"/>
+                    <Label Text="{Binding AccountTypeId}"/>
                     
                 </StackLayout>
             </DataTemplate>

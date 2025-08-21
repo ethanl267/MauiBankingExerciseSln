@@ -14,11 +14,11 @@ namespace MauiBankingExercise.ViewModels
     public class CustomerSelectionViewModel
     {
         public ObservableCollection<Customer> Customers { get; set; }
-        private CustomerService _service;
+        private BankingDatabaseService _service;
 
         public CustomerSelectionViewModel()
         {
-            _service = new CustomerService(App.DbConnection);
+            _service = new BankingDatabaseService(App.DbConnection);
             var allCustomers = _service.GetAllCustomers();
             Customers = new ObservableCollection<Customer>(allCustomers);
         }
