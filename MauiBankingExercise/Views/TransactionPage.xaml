@@ -4,19 +4,72 @@
              x:Class="MauiBankingExercise.Views.TransactionPage"
              xmlns:vm="clr-namespace:MauiBankingExercise.ViewModels"
              xmlns:models="clr-namespace:MauiBankingExercise.Models"
-             Title="TransactionPage" >
+             Title="TransactionPage" x:DataType="vm:TransactionViewModel">
 
-    <CollectionView ItemsSource="{Binding Transactions}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Transaction">
-                <StackLayout Padding="10">
-                    <Label Text="Transactions"/>
-                    <Label Text="{Binding TransactionId}"/>
-                    <Label Text="{Binding TransactionDate}"/>
-                    <Label Text="{Binding TransactionType}"/>
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <!-- Account Details Header -->
+        <Border Stroke="#D5DBDB"
+            StrokeThickness="1"
+            BackgroundColor="#ECF0F1"
+            StrokeShape="RoundRectangle 12"
+            Margin="5"
+            Padding="15"
+            BindingContext="{Binding SelectedAccount}">
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Account Details"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50" />
+
+                <Label Text="{Binding AccountNumber}"
+                   FontSize="14"
+                   TextColor="#34495E" />
+
+                <Label Text="{Binding AccountBalance, StringFormat='Balance: {0:C}'}"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#27AE60" />
+
+                <Label Text="{Binding AccountTypeId, StringFormat='Type: {0}'}"
+                   FontSize="14"
+                   TextColor="#7F8C8D" />
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- Transactions List -->
+        <CollectionView ItemsSource="{Binding Transactions}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Transaction">
+                    <Border Stroke="#D5DBDB"
+                        StrokeThickness="1"
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 8"
+                        Margin="5"
+                        Padding="10">
+
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="{Binding TransactionType}"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50" />
+
+                            <Label Text="{Binding TransactionDate, StringFormat='Date: {0:dd MMM yyyy}'}"
+                               FontSize="14"
+                               TextColor="#7F8C8D" />
+
+                            <Label Text="{Binding TransactionId, StringFormat='ID: {0}'}"
+                               FontSize="12"
+                               TextColor="#95A5A6" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+
 
 </ContentPage>

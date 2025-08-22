@@ -8,18 +8,44 @@
 
 
     <CollectionView ItemsSource="{Binding Accounts}"
-                    SelectedItem="Single"
-                    SelectionChanged="OnAccountSelected">
+                SelectionMode="Single"
+                SelectionChanged="OnAccountSelected">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Account">
-                <StackLayout Padding="10">
-                    <Label Text="Current Account"/>
-                    <Label Text="{Binding AccountNumber}"/>
-                    <Label Text="{Binding AccountBalance}"/>
-                    <Label Text="{Binding AccountTypeId}"/>
-                    
-                </StackLayout>
+                <Border Stroke="#D5DBDB"
+                    StrokeThickness="1"
+                    BackgroundColor="#ECF0F1"
+                    StrokeShape="RoundRectangle 12"
+                    Margin="5"
+                    Padding="15">
+
+                    <VerticalStackLayout Spacing="5">
+                        
+                        <Label Text="Current Account"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50" />
+
+                        
+                        <Label Text="{Binding AccountNumber}"
+                           FontSize="14"
+                           TextColor="#34495E" />
+
+                       
+                        <Label Text="{Binding AccountBalance, StringFormat='Balance: {0:C}'}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#27AE60" />
+
+                        
+                        <Label Text="{Binding AccountTypeId, StringFormat='Type: {0}'}"
+                           FontSize="14"
+                           TextColor="#7F8C8D" />
+                    </VerticalStackLayout>
+
+                </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+
 </ContentPage>
