@@ -15,7 +15,7 @@
             StrokeShape="RoundRectangle 12"
             Margin="5"
             Padding="15"
-            BindingContext="{Binding SelectedAccount}">
+            >
 
             <VerticalStackLayout Spacing="5">
                 <Label Text="Account Details"
@@ -23,16 +23,16 @@
                    FontAttributes="Bold"
                    TextColor="#2C3E50" />
 
-                <Label Text="{Binding AccountNumber}"
+                <Label Text="{Binding SelectedAccount.AccountNumber}"
                    FontSize="14"
                    TextColor="#34495E" />
 
-                <Label Text="{Binding AccountBalance, StringFormat='Balance: {0:C}'}"
+                <Label Text="{Binding SelectedAccount.AccountBalance, StringFormat='Balance: {0:C}'}"
                    FontSize="16"
                    FontAttributes="Bold"
                    TextColor="#27AE60" />
 
-                <Label Text="{Binding AccountTypeId, StringFormat='Type: {0}'}"
+                <Label Text="{Binding SelectedAccount.AccountTypeId, StringFormat='Type: {0}'}"
                    FontSize="14"
                    TextColor="#7F8C8D" />
             </VerticalStackLayout>
@@ -67,6 +67,12 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
+        <Button Text="Make a Transaction"
+        Clicked="GoToTransferPageClicked"
+        BackgroundColor="#3498DB"
+        TextColor="White"
+        CornerRadius="8" />
 
     </VerticalStackLayout>
 
