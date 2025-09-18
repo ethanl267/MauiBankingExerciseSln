@@ -1,25 +1,21 @@
-﻿using SQLite;
-using MauiBankingExercise.Views;
-using MauiBankingExercise.Services;
+﻿using MauiBankingExercise.Views;
 
 namespace MauiBankingExercise
 {
     public partial class App : Application
     {
-        public static SQLiteConnection DbConnection;
+        public static IServiceProvider Services { get; private set; }
 
-        public App()
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
 
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "banking.db");
-            DbConnection = new SQLiteConnection(dbPath);
+            Services = serviceProvider;
 
-            BankingSeeder.Seed(DbConnection);
-
-            MainPage = new NavigationPage(new CustomerSelectionPage());
-            
+            // Start with CustomerSelectionPage from DI
+            MainPage = new NavigationPage(
+                Services.GetRequiredService<CustomerSelectionPage>()
+            );
         }
-
     }
 }

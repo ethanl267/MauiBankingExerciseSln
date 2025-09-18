@@ -1,25 +1,37 @@
 ﻿using MauiBankingExercise.Models;
 using MauiBankingExercise.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MauiBankingExercise.ViewModels
 {
-    public class CustomerDashBoardViewModel
+    public class CustomerDashboardViewModel
     {
-        private readonly BankingDatabaseService _service;
+        private readonly IBankingApiService _apiService;
 
-        public ObservableCollection<Account> Accounts { get; set; }
+        // Public property to set the customerId dynamically
+        public int CustomerId { get; set; }
 
-        public CustomerDashBoardViewModel(int customerId)
+        // Observable collection bound to your CollectionView
+        public ObservableCollection<Account> Accounts { get; set; } = new ObservableCollection<Account>();
+
+        // Constructor now only takes the API service
+        public CustomerDashboardViewModel(IBankingApiService apiService)
         {
-            _service = new BankingDatabaseService(App.DbConnection);
-            var allAccounts = _service.GetAccountsByCustomerId(customerId);
-            Accounts = new ObservableCollection<Account>(allAccounts);
+            _apiService = apiService;
+        }
+
+        // Method to load accounts for the current CustomerId
+        public async Task LoadAccountsAsync()
+        {
+            if (CustomerId == 0) return; // safety check
+
+            var accountsFromApi = await _apiService.GetAccountsByCustomerAsync(CustomerId);
+            Accounts.Clear();
+            foreach (var acc in accountsFromApi)
+                Accounts.Add(acc);
         }
     }
 }
+
+

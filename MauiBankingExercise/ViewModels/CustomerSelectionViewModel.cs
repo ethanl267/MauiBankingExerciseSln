@@ -1,26 +1,33 @@
 ﻿using MauiBankingExercise.Models;
-using Microsoft.Maui.ApplicationModel.Communication;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using MauiBankingExercise.Services;
+using System.Collections.ObjectModel;
 
 namespace MauiBankingExercise.ViewModels
 {
     public class CustomerSelectionViewModel
     {
-        public ObservableCollection<Customer> Customers { get; set; }
-        private BankingDatabaseService _service;
+        public ObservableCollection<Customer> Customers { get; set; } = new();
 
-        public CustomerSelectionViewModel()
+        private readonly IBankingApiService _apiService;
+
+        // Inject API service instead of local DB
+        public CustomerSelectionViewModel(IBankingApiService apiService)
         {
-            _service = new BankingDatabaseService(App.DbConnection);
-            var allCustomers = _service.GetAllCustomers();
-            Customers = new ObservableCollection<Customer>(allCustomers);
+            _apiService = apiService;
+            _ = LoadCustomersAsync();
+        }
+
+        // Async load method
+        public async Task LoadCustomersAsync()
+        {
+
+            var customers = await _apiService.GetCustomersAsync();
+            Customers.Clear();
+
+            foreach (var c in customers)
+                Customers.Add(c);
+
         }
     }
 }
+

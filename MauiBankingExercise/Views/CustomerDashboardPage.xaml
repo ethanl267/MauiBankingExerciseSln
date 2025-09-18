@@ -4,8 +4,9 @@
              x:Class="MauiBankingExercise.Views.CustomerDashboardPage"
              xmlns:vm="clr-namespace:MauiBankingExercise.ViewModels"
              xmlns:models="clr-namespace:MauiBankingExercise.Models"
-             Title="CustomerDashboardPage" x:DataType="vm:CustomerDashBoardViewModel">
+             Title="CustomerDashBoardPage">
 
+    
 
     <CollectionView ItemsSource="{Binding Accounts}"
                 SelectionMode="Single"

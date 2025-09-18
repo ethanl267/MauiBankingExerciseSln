@@ -6,38 +6,31 @@ namespace MauiBankingExercise.Views
 {
     public partial class CustomerDashboardPage : ContentPage
     {
-      //  private Customer _customer;
-        private BankingDatabaseService _service;
+        private CustomerDashboardViewModel ViewModel => (CustomerDashboardViewModel) BindingContext;
 
-        public CustomerDashboardPage(int customerId)
+        public CustomerDashboardPage(CustomerDashboardViewModel viewModel)
         {
             InitializeComponent();
-            BindingContext = new CustomerDashBoardViewModel(customerId);
+            BindingContext = viewModel;
+        }
 
-          //  _service = new BankingDatabaseService(App.DbConnection);
-
-          /*  // Fetch the customer from database
-            _customer = _service.GetAllCustomers()
-                                .FirstOrDefault(c => c.CustomerId == customerId)
-                        ?? throw new Exception("Customer not found");
-          */
-         
+        public async Task InitializeAsync(int customerId)
+        {
+            ViewModel.CustomerId = customerId;
+            await ViewModel.LoadAccountsAsync();
         }
 
         private async void OnAccountSelected(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("Account clicked!"); // Debug line
-
             if (e.CurrentSelection.FirstOrDefault() is Account selectedAccount)
             {
-                Console.WriteLine($"Navigating to account {selectedAccount.AccountId}");
+                
                 await Navigation.PushAsync(new TransactionPage(selectedAccount.AccountId));
             }
 
-    ((CollectionView)sender).SelectedItem = null;
+            ((CollectionView)sender).SelectedItem = null;
         }
-
-
     }
 }
+
 

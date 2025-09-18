@@ -2,51 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiBankingExercise.Views.CustomerSelectionPage"
-             xmlns:vm="clr-namespace:MauiBankingExercise.ViewModels"
              Title="Customer Page">
-
-    <ContentPage.BindingContext>
-        <vm:CustomerSelectionViewModel />
-    </ContentPage.BindingContext>
 
     <StackLayout Padding="10">
         <Label Text="Customer List" 
-           FontSize="28" 
-           FontAttributes="Bold" 
-           HorizontalOptions="Center" 
-           TextColor="#2C3E50" />
-        
-       
+               FontSize="28" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" 
+               TextColor="#2C3E50" />
 
         <CollectionView x:Name="CustomerList" 
-                    ItemsSource="{Binding Customers}"
-                    SelectionMode="Single"
-                    SelectionChanged="CustomerList_SelectionChanged">
+                        ItemsSource="{Binding Customers}"
+                        SelectionMode="Single"
+                        SelectionChanged="CustomerList_SelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border Stroke="#D5DBDB"
-                        StrokeThickness="1"
-                        BackgroundColor="#ECF0F1"
-                        StrokeShape="RoundRectangle 12"
-                        Margin="5"
-                        Padding="15">
+                            StrokeThickness="1"
+                            BackgroundColor="#ECF0F1"
+                            StrokeShape="RoundRectangle 12"
+                            Margin="5"
+                            Padding="15">
 
                         <VerticalStackLayout Spacing="5">
                             <Label Text="{Binding FirstName}" 
-                               FontSize="20" 
-                               FontAttributes="Bold" 
-                               TextColor="#2C3E50"/>
+                                   FontSize="20" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#2C3E50"/>
                             <Label Text="{Binding LastName}" 
-                               FontSize="16" 
-                               TextColor="#34495E"/>
+                                   FontSize="16" 
+                                   TextColor="#34495E"/>
                         </VerticalStackLayout>
 
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-
     </StackLayout>
-    
 </ContentPage>

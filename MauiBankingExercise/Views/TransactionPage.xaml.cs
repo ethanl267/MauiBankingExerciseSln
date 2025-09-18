@@ -6,13 +6,14 @@ using MauiBankingExercise.ViewModels;
 public partial class TransactionPage : ContentPage
 {
     private readonly TransactionViewModel _viewModel;
+    private int _accountId;
 
-    public TransactionPage(int accountId) // use lower-case 'accountId'
+    public TransactionPage(int accountId)
     {
         InitializeComponent();
+        _accountId = accountId;
 
-        _viewModel = new TransactionViewModel(accountId);
-        BindingContext = _viewModel;
+        BindingContext = new TransactionViewModel(accountId);
     }
 
     private async void GoToTransferPageClicked(object sender, EventArgs e)
