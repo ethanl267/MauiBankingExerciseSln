@@ -1,5 +1,7 @@
 using MauiBankingExercise.ViewModels;
 using Microsoft.Maui.Controls;
+using Microsoft.Extensions.DependencyInjection;
+using MauiBankingExercise.Services;
 
 namespace MauiBankingExercise.Views
 {
@@ -11,9 +13,12 @@ namespace MauiBankingExercise.Views
         {
             InitializeComponent();
 
-            
-            _viewModel = new TransactionViewModel(accountId);
+            var apiService = App.Services.GetRequiredService<IBankingApiService>();
+
+            _viewModel = new TransactionViewModel(apiService, accountId);
             BindingContext = _viewModel;
+
+            Task.Run(async () => await _viewModel.LoadTransactionsAsync());
         }
 
         private void DepositClicked(object sender, EventArgs e)
@@ -32,11 +37,11 @@ namespace MauiBankingExercise.Views
                 _viewModel.WithdrawCommand.Execute(amount);
                 AmountEntry.Text = string.Empty;
             }
-
         }
     }
-
 }
+
+
 
 
 

@@ -28,16 +28,18 @@ namespace MauiBankingExercise
                 client.BaseAddress = new Uri("https://localhost:7258");
             });
 
-            // Register your API service
             builder.Services.AddScoped<IBankingApiService, BankingApiService>();
 
             // Register ViewModels
             builder.Services.AddTransient<CustomerSelectionViewModel>();
             builder.Services.AddTransient<CustomerDashboardViewModel>();
-
+            builder.Services.AddTransient<TransactionViewModel>();
+            
             // Register Pages
             builder.Services.AddTransient<CustomerSelectionPage>();
             builder.Services.AddTransient<CustomerDashboardPage>();
+            builder.Services.AddTransient<TransactionPage>();
+            builder.Services.AddTransient<TransferPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

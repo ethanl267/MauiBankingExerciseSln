@@ -24,12 +24,13 @@ namespace MauiBankingExercise.Views
         {
             if (e.CurrentSelection.FirstOrDefault() is Account selectedAccount)
             {
-                
-                await Navigation.PushAsync(new TransactionPage(selectedAccount.AccountId));
+                Console.WriteLine($"Navigating to account {selectedAccount.AccountId}");
+                await Navigation.PushAsync(new TransactionPage(selectedAccount));
             }
 
-            ((CollectionView)sender).SelectedItem = null;
+    ((CollectionView)sender).SelectedItem = null;
         }
+
     }
 }
 

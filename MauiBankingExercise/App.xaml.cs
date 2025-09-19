@@ -9,13 +9,9 @@ namespace MauiBankingExercise
         public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-
             Services = serviceProvider;
+            MainPage = new NavigationPage(Services.GetRequiredService<CustomerSelectionPage>());
 
-            // Start with CustomerSelectionPage from DI
-            MainPage = new NavigationPage(
-                Services.GetRequiredService<CustomerSelectionPage>()
-            );
         }
     }
 }
